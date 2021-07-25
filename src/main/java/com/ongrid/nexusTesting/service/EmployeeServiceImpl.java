@@ -2,7 +2,6 @@ package com.ongrid.nexusTesting.service;
 
 import com.ongrid.nexusTesting.model.Employee;
 import com.ongrid.nexusTesting.repository.EmployeeRepository;
-import com.ongrid.nexusTesting.service.object.AddEmployeeRequest;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -14,16 +13,19 @@ public class EmployeeServiceImpl implements EmployeeService{
     @Autowired
     EmployeeRepository employeeRepository;
 
+    public EmployeeServiceImpl(EmployeeRepository employeeRepository) {
+        this.employeeRepository = employeeRepository;
+    }
+
     @Override
     public List<Employee> getAllEmployees() {
         return employeeRepository.findAll();
     }
 
     @Override
-    public Employee addEmployee(AddEmployeeRequest request) {
-        if(employeeRepository.checkEmailExists(request.getEmail()))
-            throw new RuntimeException("Email already taken");
-        Employee employee = new Employee(request.getName(), request.getEmail(), request.getGender());
+    public Employee addEmployee(Employee employee) {
+        if(employeeRepository.checkEmailExists(employee.getEmail()))
+            throw new RuntimeException("Email " + employee.getEmail() + " taken");
         employeeRepository.save(employee);
         return employee;
     }

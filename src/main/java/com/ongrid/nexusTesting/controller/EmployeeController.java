@@ -1,13 +1,10 @@
 package com.ongrid.nexusTesting.controller;
 
 import com.ongrid.nexusTesting.model.Employee;
-import com.ongrid.nexusTesting.repository.EmployeeRepository;
 import com.ongrid.nexusTesting.service.EmployeeService;
-import com.ongrid.nexusTesting.service.object.AddEmployeeRequest;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
-import java.net.http.HttpResponse;
 import java.util.List;
 
 @RestController
@@ -23,10 +20,10 @@ public class EmployeeController {
     }
 
     @PostMapping
-    public Employee addEmployee(@RequestBody AddEmployeeRequest request){
-        if (request == null)
-            throw new IllegalArgumentException("Add employee request not present");
-        return employeeService.addEmployee(request);
+    public Employee addEmployee(@RequestBody Employee employee){
+        if (employee == null)
+            throw new IllegalArgumentException("Employee not present");
+        return employeeService.addEmployee(employee);
     }
 
     @PostMapping(path = "/{employeeId}")
