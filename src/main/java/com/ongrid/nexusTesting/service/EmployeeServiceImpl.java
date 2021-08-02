@@ -2,7 +2,6 @@ package com.ongrid.nexusTesting.service;
 
 import com.ongrid.nexusTesting.model.Employee;
 import com.ongrid.nexusTesting.repository.EmployeeRepository;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -10,7 +9,6 @@ import java.util.List;
 @Service
 public class EmployeeServiceImpl implements EmployeeService{
 
-    @Autowired
     EmployeeRepository employeeRepository;
 
     public EmployeeServiceImpl(EmployeeRepository employeeRepository) {
