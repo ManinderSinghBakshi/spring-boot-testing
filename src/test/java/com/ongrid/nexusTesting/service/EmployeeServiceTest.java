@@ -71,13 +71,8 @@ class EmployeeServiceTest {
         // then
         assertThatThrownBy(() -> underTest.addEmployee(employee))
                 .isInstanceOf(RuntimeException.class)
-                .hasMessageContaining("Email " + employee.getEmail() + " taken");
+                .hasMessageContaining("Emai " + employee.getEmail() + " taken");
 
         verify(employeeRepository, never()).save(any());
-    }
-
-    @Test
-    @Disabled
-    void deleteEmployee() {
     }
 }

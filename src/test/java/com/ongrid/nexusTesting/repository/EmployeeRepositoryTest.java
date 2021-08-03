@@ -25,6 +25,18 @@ class EmployeeRepositoryTest {
         boolean exists = underTest.checkEmailExists(email);
 
         // Then
-        assertThat(exists).isTrue();
+        assertThat(exists).isFalse();
+    }
+
+    @Test
+    void checkFindByName(){
+        // given
+        Employee employee = new Employee("Maninder", "maninder@gmail.com", Gender.MALE);
+
+        // when
+        underTest.save(employee);
+
+        // then
+        assertThat(underTest.findByName("Maninder")).isNotNull();
     }
 }
